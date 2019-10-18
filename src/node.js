@@ -43,10 +43,15 @@ class Node {
 			let dad = this.parent;
 			let granDad = this.parent.parent;
 
-			let anotherChild;
-			if (dad.left == child)
+			let anotherChild, anotherDirection;
+			if (dad.left == child) {
 				anotherChild = dad.right;
-				else anotherChild = dad.left;
+				anotherDirection = 'right'
+				}
+				else {
+					anotherChild = dad.left;
+					anotherDirection = 'left'
+				}
 
 			let grandSonLeft = child.left;
 			let grandSonRight = child.right;
@@ -68,10 +73,18 @@ class Node {
 				granDad.appendChild(child);
 			}
 
-			child.appendChild(dad);
+			//child.appendChild(dad);
 			if (anotherChild) {
-				child.appendChild(anotherChild);
-			}
+				if (anotherDirection == 'left') {
+					child.appendChild(anotherChild);
+					child.appendChild(dad);
+				} else {
+						child.appendChild(dad);
+						child.appendChild(anotherChild);
+					}
+			} else {
+					child.appendChild(dad);
+				}
 
 			if (grandSonLeft) {
 				dad.appendChild(grandSonLeft);
