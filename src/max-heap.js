@@ -58,7 +58,13 @@ class MaxHeap {
 	}
 
 	size() {
-
+		if (!this.root) return 0;
+		let  l = this.parentNodes.length;
+		if (l == 1) return 1;
+		let count = l + l -1;
+		if (this.parentNodes[l-1].parent.left == this.parentNodes[l-1])
+			count--;
+		return count;
 	}
 
 	isEmpty() {
